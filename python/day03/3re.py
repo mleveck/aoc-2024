@@ -14,13 +14,11 @@ lines = input.splitlines()
 
 
 def process(input: str) -> int:
-    ans = 0
-    mulexprs = re.findall(r"mul\(\d{1,3},\d{1,3}\)", input)
-    for expr in mulexprs:
-        operands = re.findall(r"\d{1,3}", expr)
-        prod = mul(*[int(op) for op in operands])
-        ans += prod
-    return ans
+    products = []
+    matches = re.finditer(r"mul\((\d{1,3}),(\d{1,3})\)", input)
+    for match in matches:
+        products.append(int(match.group(1)) * int(match.group(2)))
+    return sum(products)
 
 
 EXPECTED = 161

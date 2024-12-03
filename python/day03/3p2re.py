@@ -12,25 +12,18 @@ else:
 
 lines = input.splitlines()
 
-
-def getprod(expr: str):
-    operands = re.findall(r"\d{1,3}", expr)
-    return mul(*[int(op) for op in operands])
-
-
 def process(input: str) -> int:
     input = "do()" + input
-    mulregex = r"mul\(\d{1,3},\d{1,3}\)"
+    mulregex = r"mul\((\d{1,3}),(\d{1,3})\)"
     matches = re.finditer(mulregex, input)
-    ans = 0
+    products = []
     for match in matches:
         mstart = match.start()
-        mend = match.end()
         do_index = input.rfind("do()", 0, mstart)
         dont_index = input.rfind("don't()", 0, mstart)
         if do_index > dont_index:
-            ans += getprod(input[mstart:mend])
-    return ans
+            products.append(int(match.group(1)) * int(match.group(2)))
+    return sum(products)
 
 
 EXPECTED = 48
