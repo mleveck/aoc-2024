@@ -18,8 +18,8 @@ ans = 0
 for pos, char in pos_map.items():
     if char != "A":
         continue
-    d1 = "".join([pos_map.get(point_add(pos, dir), "OOB") for dir in diag1])
-    d2 = "".join([pos_map.get(point_add(pos, dir), "OOB") for dir in diag2])
+    d1 = "".join(pos_map.get(point_add(pos, dir), "OOB") for dir in diag1)
+    d2 = "".join(pos_map.get(point_add(pos, dir), "OOB") for dir in diag2)
     if d1 in valid_chars and d2 in valid_chars:
         ans += 1
 
