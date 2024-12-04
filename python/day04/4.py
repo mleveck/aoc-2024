@@ -14,9 +14,7 @@ lines = input.splitlines()
 
 
 def get_diag(lines):
-    lines = lines.copy()
     diagonals = []
-    antidiagonals = []
     nrows = len(lines)
     ncols = len(lines[0])
     for i in range(nrows):
@@ -29,18 +27,7 @@ def get_diag(lines):
         for i in range(min(ncols - j, nrows)):
             diagonal += lines[i][i + j]
         diagonals.append(diagonal)
-    lines = list("".join(l) for l in zip(*reversed(lines)))
-    for i in range(nrows):
-        diagonal = ""
-        for j in range(min(nrows - i, ncols)):
-            diagonal += lines[i + j][j]
-        antidiagonals.append(diagonal)
-    for j in range(1, ncols):
-        diagonal = ""
-        for i in range(min(ncols - j, nrows)):
-            diagonal += lines[i][i + j]
-        antidiagonals.append(diagonal)
-    return diagonals, antidiagonals
+    return diagonals
 
 
 def process(input: str) -> int:
@@ -51,15 +38,17 @@ def process(input: str) -> int:
         ans += l.count("XMAS")
         ans += l[::-1].count("XMAS")
     # vertical
-    flip = list("".join(l) for l in zip(*lines))
+    flip = list("".join(l) for l in zip(*reversed(lines)))
     for l in flip:
         ans += l.count("XMAS")
         ans += l[::-1].count("XMAS")
     # diagonals
-    diag, antidiag = get_diag(lines)
+    diag = get_diag(lines)
     for l in diag:
         ans += l.count("XMAS")
         ans += l[::-1].count("XMAS")
+    # anti-diagonals
+    antidiag = get_diag(flip)
     for l in antidiag:
         ans += l.count("XMAS")
         ans += l[::-1].count("XMAS")
