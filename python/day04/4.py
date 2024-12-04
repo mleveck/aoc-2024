@@ -29,30 +29,20 @@ def get_diag(lines):
         diagonals.append(diagonal)
     return diagonals
 
-
-def process(input: str) -> int:
+def count_xmas(lines):
     ans = 0
-    lines = input.splitlines()
-    # horizontal
     for l in lines:
         ans += l.count("XMAS")
         ans += l[::-1].count("XMAS")
-    # vertical
-    flip = list("".join(l) for l in zip(*reversed(lines)))
-    for l in flip:
-        ans += l.count("XMAS")
-        ans += l[::-1].count("XMAS")
-    # diagonals
-    diag = get_diag(lines)
-    for l in diag:
-        ans += l.count("XMAS")
-        ans += l[::-1].count("XMAS")
-    # anti-diagonals
-    antidiag = get_diag(flip)
-    for l in antidiag:
-        ans += l.count("XMAS")
-        ans += l[::-1].count("XMAS")
     return ans
+
+
+def process(input: str) -> int:
+    lines = input.splitlines()
+    flip = list("".join(l) for l in zip(*reversed(lines)))
+    diag = get_diag(lines)
+    antidiag = get_diag(flip)
+    return sum(map(count_xmas, [lines, flip, diag, antidiag]))
 
 
 EXPECTED = 18
