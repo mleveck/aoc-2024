@@ -1,9 +1,5 @@
-import re
 from util import point_add, point_scale, parse_matrix, dydx
-from collections import Counter, deque
-from itertools import pairwise
 import sys
-from operator import mul
 
 if len(sys.argv) > 1:
     input = open(sys.argv[1]).read().strip()
@@ -14,7 +10,7 @@ lines = input.splitlines()
 
 grid = parse_matrix(col_sep="", s=input)
 pos_map = {(r, c): char for r, col in enumerate(grid) for c, char in enumerate(col)}
-dirs = dydx
+dirs = dydx # [(1, 0), (-1, 0), (1, 1), (0, 1), (-1, 1), (1, -1), (0, -1), (-1, -1)]
 
 ans = 0
 for pos in pos_map:
@@ -25,4 +21,4 @@ for pos in pos_map:
                 break
         else:
             ans += 1
-print(ans)
+print(ans) # 18

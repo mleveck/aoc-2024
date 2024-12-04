@@ -48,6 +48,15 @@ def limited_potential_neighbors(row, col, grid=None):
         pn = [coord for coord in pn if 0 <= coord[0] < len(grid) and 0 <= coord[1] < len(grid[0])]
     return pn
 
+def point_scale(p, scale):
+    return (p[0] * scale, p[1] * scale)
+
+def point_add(p1, p2):
+    return (p1[0] + p2[0], p1[1] + p2[1])
+
+
+def point_inv(p):
+    return (-1 * p[0], -1 * p[1])
 digit_words = "zero one two three four five six seven eight nine".split()
 
 if __name__ == "__main__":
