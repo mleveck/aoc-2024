@@ -26,7 +26,7 @@ def can_equal(arg, rest, target):
 for l in lines:
     res, args = l.split(": ")
     res = int(res)
-    args = list(map(int, args.split()))
+    args = tuple(map(int, args.split()))
     calibrations.append((res, args))
 
 
