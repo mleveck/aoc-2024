@@ -14,6 +14,8 @@ calibrations = []
 def can_equal(arg, rest, target):
     if not rest:
         return arg == target
+    if arg > target:
+        return False
 
     return (
         can_equal(arg + rest[0], rest[1:], target)
