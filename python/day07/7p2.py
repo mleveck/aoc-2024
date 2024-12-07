@@ -11,7 +11,6 @@ lines = input.splitlines()
 calibrations = []
 
 
-@cache
 def can_equal(arg, rest, target):
     if not rest:
         return arg == target
@@ -26,7 +25,7 @@ def can_equal(arg, rest, target):
 for l in lines:
     res, args = l.split(": ")
     res = int(res)
-    args = tuple(map(int, args.split()))
+    args = list(map(int, args.split()))
     calibrations.append((res, args))
 
 
