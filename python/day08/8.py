@@ -19,8 +19,7 @@ antenna2loc = defaultdict(list)
 
 for r, row in enumerate(G):
     for c, char in enumerate(row):
-        cord = ord(char)
-        if 97 <= cord <= 122 or 65 <= cord <=90 or 48 <= cord <=57:
+        if char.isalnum():
             loc2antannae[(c, r)] = char
             antenna2loc[char].append((c, r))
         points.add((c, r))
