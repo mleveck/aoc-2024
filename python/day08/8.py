@@ -11,16 +11,12 @@ else:
 lines = input.splitlines()
 
 G = parse_matrix(s=input, col_sep="")
-R = len(G)
-C = len(G[0])
 points = set()
-loc2antannae = dict()
 antenna2loc = defaultdict(list)
 
 for r, row in enumerate(G):
     for c, char in enumerate(row):
         if char.isalnum():
-            loc2antannae[(c, r)] = char
             antenna2loc[char].append((c, r))
         points.add((c, r))
 
