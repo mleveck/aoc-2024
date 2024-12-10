@@ -16,18 +16,18 @@ theads = {p for p, num in GMAP.items() if num == 0}
 
 
 def dfs(start):
-    queue = deque([start])
+    stack = deque([start])
 
     rating = 0
-    while queue:
-        pos = queue.pop()
+    while stack:
+        pos = stack.pop()
         if GMAP[pos] == 9:
             rating += 1
             continue
         neighbors = util.limited_potential_neighbors(pos[0], pos[1], G)
         for neighbor in neighbors:
             if GMAP[neighbor] - GMAP[pos] == 1:
-                queue.append(neighbor)
+                stack.append(neighbor)
     return rating
 
 
