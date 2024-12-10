@@ -1,4 +1,3 @@
-from collections import deque
 import util
 from util import *
 import sys
@@ -16,7 +15,7 @@ theads = {p for p, num in GMAP.items() if num == 0}
 
 
 def dfs(start):
-    stack = deque([start])
+    stack = [start]
 
     rating = 0
     while stack:
