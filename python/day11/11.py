@@ -10,7 +10,7 @@ lines = input.splitlines()
 
 stones = list(map(int, lines[0].split()))
 
-for _ in range(75):
+for _ in range(25):
     new_stones = []
     for stone in stones:
         if stone == 0:
