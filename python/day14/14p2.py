@@ -21,25 +21,6 @@ X = 101
 Y = 103
 
 
-def is_symmetric(s: set[int]) -> bool:
-    l = list(sorted(s))
-    if len(l) < 2:
-        return False
-    m = None
-    if len(l) % 2 == 1:
-        m = l[len(l) // 2]
-    else:
-        m = (l[len(l) // 2 - 1] + l[len(l) // 2]) / 2
-    left, right = 0, len(l) - 1
-    while right > left:
-        if ((l[right] - l[left]) / 2) + l[right] != m:
-            return False
-        right -= 1
-        left += 1
-    print(l, m)
-    return True
-
-
 for l in lines:
     p, v = l.split()
     p = p.split("=")[1].split(",")

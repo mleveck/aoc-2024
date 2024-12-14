@@ -18,9 +18,9 @@ def transform(stone, blinks):
         return 1
     if stone == 0:
         return transform(1, blinks - 1)
-    if len(str(stone)) % 2 == 0:
-        sstr = str(stone)
-        l = len(sstr)
+    sstr = str(stone)
+    l = len(sstr)
+    if l % 2 == 0:
         return (
             transform(int(sstr[: l // 2]), blinks - 1) + 
             transform(int(sstr[l // 2 :]), blinks - 1)
