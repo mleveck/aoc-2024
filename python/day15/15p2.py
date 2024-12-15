@@ -76,19 +76,15 @@ def trymove(source, dir) -> tuple[bool, list[tuple[tuple[int, int], tuple[int, i
                 return (False, [])
         else:
             if gmap[target] == "[":
-                selfok, selfnewposs = trymove(target, dir)
-                buddyok, buddynewposs = trymove(point_add(target, (0, 1)), dir)
-                if buddyok and selfok:
-                    return (True, buddynewposs + selfnewposs + [(source, target)])
-                else:
-                    return False, []
-            if gmap[target] == "]":
-                selfok, selfnewposs = trymove(target, dir)
-                buddyok, buddynewposs = trymove(point_add(target, (0, -1)), dir)
-                if buddyok and selfok:
-                    return (True, buddynewposs + selfnewposs + [(source, target)])
-                else:
-                    return False, []
+                buddy = point_add(target, (0, 1))
+            elif gmap[target] == "]":
+                buddy = point_add(target, (0, -1))
+            buddyok, buddynewposs = trymove(buddy, dir)
+            selfok, selfnewposs = trymove(target, dir)
+            if buddyok and selfok:
+                return (True, buddynewposs + selfnewposs + [(source, target)])
+            else:
+                return False, []
     assert (
         False
     ), f"Hit a condition unhandled move condition moving {source} {gmap[source]} to {target} {gmap[target]} in dir {dir}"
